@@ -129,6 +129,6 @@ The complete raw and cleaned datasets are maintained separately because of their
 
 ## Author
 
-**Nexora Labs**
+**Ameer Hamza**
 
 Data & AI Internship — Task 01
