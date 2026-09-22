@@ -1,0 +1,15 @@
+TASK 02 — IMPORTANT FINDINGS
+============================================================
+
+1. The highest-sales product category is 'health_beauty', generating approximately R$ 1,258,681.34 in sales.
+
+2. 'credit_card' is the payment method with the highest total payment value, approximately R$ 12,542,084.19.
+
+3. The average customer review score is 4.09 out of 5.
+
+4. The average delivery time is 12.6 days, while the median delivery time is 10.2 days.
+
+5. Product price and freight value have a correlation of 0.414, indicating the strength and direction of their relationship.
+
+6. The highest number of orders occurred in 2017-11, with 7,544 orders.
+
