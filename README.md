@@ -1,36 +1,40 @@
+
 # Olist E-Commerce Data & AI Project
 
-A data analysis and AI-focused project based on the Olist Brazilian E-Commerce Public Dataset.
+A data analysis project based on the Olist Brazilian E-Commerce Public Dataset. This project covers data cleaning, exploratory data analysis, business insights, data visualization, and SQL analysis.
 
-This project is being completed as part of a Data & AI Internship. It currently includes data cleaning, quality checking, exploratory data analysis, statistical analysis, business insights, and data visualization.
+**Author:** Ameer Hamza  
+**Project:** Data & AI Internship
 
 ## Project Overview
 
-The project analyzes the Olist Brazilian E-Commerce Public Dataset to understand data quality, business performance, sales trends, payment methods, customer reviews, product categories, pricing, freight, and delivery performance.
+This project analyzes e-commerce data to understand order performance, payment methods, product categories, customer reviews, pricing, freight charges, and delivery performance.
 
-The project is divided into the following tasks:
+The project is organized into four tasks.
 
-- **Task 01:** Data Cleaning & Quality Checking
-- **Task 02:** Exploratory Data Analysis & Business Insights
-- **Task 03:** Build Data Visualizations
+## Project Tasks
 
----
+| Task | Description | Main Deliverable |
+|---|---|---|
+| Task 01 | Data Cleaning & Quality Checking | Cleaned datasets and quality reports |
+| Task 02 | Exploratory Data Analysis | Statistical reports and business insights |
+| Task 03 | Data Visualization | Charts and visual reports |
+| Task 04 | SQL Data Analysis | SQL queries, database documentation, and query results |
 
-# Task 01 — Data Cleaning & Quality Checking
+## Task 01 — Data Cleaning & Quality Checking
 
-## Task 01 Objectives
+### Objectives
 
 - Load datasets using Python and Pandas.
-- Identify missing values.
-- Check and remove duplicate records where appropriate.
-- Handle incorrect or inconsistent values.
-- Validate and correct data types where necessary.
-- Export cleaned datasets.
-- Generate a before-and-after data-quality report.
+- Identify missing values and duplicate records.
+- Check incorrect and inconsistent values.
+- Validate data types.
+- Prepare cleaned datasets.
+- Generate data-quality reports.
 
-## Dataset
+### Dataset
 
-The project uses the Olist Brazilian E-Commerce Public Dataset containing nine CSV datasets:
+The project uses nine datasets:
 
 1. Customers
 2. Geolocation
@@ -42,311 +46,157 @@ The project uses the Olist Brazilian E-Commerce Public Dataset containing nine C
 8. Sellers
 9. Product Category Translation
 
-The original dataset files are not included in this public repository because of their size. They were maintained locally during the analysis process.
+### Cleaning Summary
 
-## Data Cleaning Performed
+| Dataset | Rows After Cleaning |
+|---|---:|
+| Customers | 99,441 |
+| Geolocation | 738,332 |
+| Orders | 99,441 |
+| Order Items | 112,650 |
+| Order Payments | 103,886 |
+| Order Reviews | 99,224 |
+| Products | 32,951 |
+| Sellers | 3,095 |
+| Category Translation | 71 |
 
-### Missing Values
+The main duplicate issue was identified in the geolocation dataset. Missing values, data types, and inconsistent values were also checked.
 
-Missing values were identified in the Orders, Reviews, and Products datasets.
+### Task 01 Files
 
-- Missing review titles were replaced with `No title`.
-- Missing review messages were replaced with `No review message`.
-- Missing product categories were replaced with `Unknown`.
-- Missing numerical product values were handled using median values.
-- Missing order lifecycle timestamps were retained because they can represent incomplete stages of an order rather than invalid records.
+- `src/clean_dataset.py`
+- `src/task01_quality_check.py`
+- `src/task01_datatypes_check.py`
+- `src/task01_inconsistent_check.py`
+- `src/task01_problem_records.py`
+- `src/task01_report.py`
+- `reports/task01_before_after_report.csv`
 
-### Duplicate Records
+## Task 02 — Exploratory Data Analysis & Business Insights
 
-Duplicate records were checked across the datasets.
+### Objectives
 
-The main duplicate issue was found in the geolocation dataset:
+- Calculate business statistics.
+- Analyze sales and product categories.
+- Examine payment methods.
+- Analyze monthly order and sales trends.
+- Study review scores and delivery times.
+- Explore product prices and freight charges.
+- Examine relationships between numerical variables.
+- Document business findings.
 
-- Before cleaning: 1,000,163 records
-- Duplicate records removed: 261,831
-- After cleaning: 738,332 records
+### Reports
 
-### Incorrect and Inconsistent Values
+The Task 02 reports are stored in:
 
-The following checks were performed:
+- `reports/task02/statistics/`
+- `reports/task02/findings/task02_important_findings.txt`
+- `reports/task02/visualizations/`
 
-- Negative order item prices
-- Negative freight values
-- Invalid order item IDs
-- Negative payment values
-- Invalid payment installments
-- Invalid review scores
-- Negative product measurements
-- Invalid latitude and longitude values
-- Order status values
-- Order date inconsistencies
+The statistical reports cover business statistics, delivery times, monthly trends, payment methods, product statistics, correlations, review scores, and sales by category.
 
-Two payment records had zero installments and were corrected to one installment.
+### Main Script
 
-Order date inconsistencies were reviewed and retained because they appeared to be timestamp lifecycle issues rather than clear evidence that the complete order records were invalid.
+`src/task02_analysis.py`
 
-## Task 01 Before / After Summary
+## Task 03 — Build Data Visualizations
 
-| Dataset | Before Rows | After Rows | Rows Removed |
-|---|---:|---:|---:|
-| Customers | 99,441 | 99,441 | 0 |
-| Geolocation | 1,000,163 | 738,332 | 261,831 |
-| Orders | 99,441 | 99,441 | 0 |
-| Order Items | 112,650 | 112,650 | 0 |
-| Order Payments | 103,886 | 103,886 | 0 |
-| Order Reviews | 99,224 | 99,224 | 0 |
-| Products | 32,951 | 32,951 | 0 |
-| Sellers | 3,095 | 3,095 | 0 |
-| Category Translation | 71 | 71 | 0 |
+### Objectives
 
----
+Create charts that communicate important business patterns and trends.
 
-# Task 02 — Exploratory Data Analysis & Business Insights
+### Visualizations
 
-## Task 02 Objectives
+1. Top product categories by sales
+2. Monthly order trend
+3. Payment methods
+4. Delivery time distribution
+5. Product price versus freight value
+6. Customer review score distribution
+7. Payment value by method
 
-Task 02 focuses on exploring the cleaned Olist data and generating meaningful statistical and business insights.
+### Files
 
-The analysis includes:
+- Python script: `src/task03_visualizations.py`
+- Charts folder: `reports/task03/visualizations/`
 
-- Basic statistical analysis
-- Sales analysis
-- Product category analysis
-- Payment method analysis
-- Monthly order trends
-- Monthly sales trends
-- Review score distribution
-- Delivery time analysis
-- Product price analysis
-- Freight analysis
-- Correlation analysis
-- Identification of important business findings
-- Data visualization
+### Run Task 03
 
-## Task 02 Analysis Performed
-
-### Business Statistics
-
-General business statistics were calculated to understand the overall structure and performance of the e-commerce dataset.
-
-### Sales by Product Category
-
-Product categories were analyzed to identify categories with higher sales activity.
-
-### Payment Method Analysis
-
-Payment methods were analyzed to understand customer payment preferences and payment values.
-
-### Monthly Order Trend
-
-Orders were analyzed over time to identify changes and patterns in monthly order volume.
-
-### Monthly Sales Trend
-
-Monthly sales were calculated and visualized to examine sales patterns over time.
-
-### Review Score Distribution
-
-Customer review scores were analyzed to understand customer satisfaction patterns.
-
-### Delivery Time Analysis
-
-Delivery time statistics were calculated to examine the distribution and performance of order deliveries.
-
-### Product Price and Freight Analysis
-
-Product prices and freight values were analyzed to understand their relationship and distribution.
-
-### Correlation Analysis
-
-Relationships between important numerical variables were examined using correlation analysis.
-
-## Task 02 Visualizations
-
-The project includes the following visualizations:
-
-1. Top 10 Product Categories by Sales
-2. Payment Method Analysis
-3. Monthly Order Trend
-4. Monthly Sales Trend
-5. Review Score Distribution
-6. Price vs Freight Relationship
-7. Delivery Time Distribution
-
-All Task 02 visualizations are available in:
-
-`reports/task02/visualizations/`
-
-## Task 02 Statistical Reports
-
-The statistical outputs are stored in:
-
-`reports/task02/statistics/`
-
-The reports include:
-
-- Business statistics
-- Delivery time statistics
-- Monthly order trend
-- Monthly sales trend
-- Order items basic statistics
-- Payment method analysis
-- Payment statistics
-- Product statistics
-- Relationship correlations
-- Review score distribution
-- Review statistics
-- Sales by product category
-- Top 10 highest payment values
-- Top 10 highest price items
-- Top 10 lowest price items
-
-Important findings are documented in:
-
-`reports/task02/findings/task02_important_findings.txt`
-
----
-
-# Task 03 — Build Data Visualizations
-
-## Task 03 Objectives
-
-Task 03 focuses on creating clear and meaningful visualizations from the cleaned Olist Brazilian E-Commerce dataset to communicate important business trends and patterns.
-
-The visualizations were generated using Python, Pandas, and Matplotlib.
-
-## Visualizations Created
-
-Seven visualizations were generated for this task.
-
-### 1. Top Product Categories by Sales
-
-**Chart type:** Bar chart
-
-Compares sales values across product categories to identify categories with higher sales activity.
-
-File: `01_top_categories_bar.png`
-
-### 2. Monthly Order Trend
-
-**Chart type:** Line chart
-
-Shows changes in order volume over time and helps identify monthly ordering patterns.
-
-File: `02_monthly_orders_line.png`
-
-### 3. Payment Methods
-
-**Chart type:** Pie chart
-
-Shows the share of payment transactions across different payment methods.
-
-File: `03_payment_methods_pie.png`
-
-### 4. Delivery Time Distribution
-
-**Chart type:** Histogram
-
-Shows the distribution of delivery times in days and helps examine delivery patterns.
-
-File: `04_delivery_time_histogram.png`
-
-### 5. Product Price vs Freight Value
-
-**Chart type:** Scatter plot
-
-Examines the relationship between product prices and freight charges.
-
-File: `05_price_vs_freight_scatter.png`
-
-### 6. Customer Review Score Distribution
-
-**Chart type:** Bar chart
-
-Shows the number of customer reviews for each review score.
-
-File: `06_review_scores_bar.png`
-
-### 7. Payment Value by Method
-
-**Chart type:** Bar chart
-
-Compares total payment values across different payment methods.
-
-File: `07_payment_value_bar.png`
-
-## Task 03 Files
-
-Python visualization script:
-
-`src/task03_visualizations.py`
-
-Generated charts:
-
-`reports/task03/visualizations/`
-
-The script uses cleaned datasets prepared in Task 01 and saves the generated charts as PNG images.
-
-## How to Run Task 03
-
-Run the following command from the project root directory:
+From the project root directory:
 
 ```bash
 python src/task03_visualizations.py
 ```
 
-The generated visualizations will be saved in:
+The generated charts are saved in `reports/task03/visualizations/`.
 
-`reports/task03/visualizations/`
+## Task 04 — Perform SQL Data Analysis
 
----
+### Objectives
 
-# Project Structure
+- Create an SQLite database from cleaned CSV files.
+- Import datasets into database tables.
+- Query data using SELECT and WHERE.
+- Summarize data using GROUP BY and aggregate functions.
+- Combine related tables using JOIN.
+- Analyze order statuses, payment methods, product categories, review scores, and customer locations.
+
+### SQL Analysis
+
+The project includes eight SQL queries covering:
+
+1. Sample customer records
+2. Delivered orders
+3. Order status counts
+4. Payment method summaries
+5. Orders joined with customer information
+6. Product categories and category translations
+7. Average customer review score
+8. Orders by customer state
+
+### Task 04 Files
+
+- Database import script: `src/task04/import_database.py`
+- SQL queries: `src/task04/queries.sql`
+- Query execution script: `src/task04/run_queries.py`
+- Database table report script: `src/task04/table_report.py`
+- Database documentation: `reports/task04/database_tables.md`
+- Query results: `reports/task04/query_results.txt`
+
+### Key Findings
+
+- Total orders analyzed: 99,441
+- Delivered orders: 96,478
+- Average customer review score: 4.09 out of 5
+- Credit card was the most frequently recorded payment method.
+- São Paulo (SP) had the highest number of orders among the states analyzed.
+
+### Run Task 04
+
+Run the database import script first, after preparing the cleaned datasets and installing the required dependencies. Then execute the SQL query runner.
+
+```bash
+python src/task04/import_database.py
+python src/task04/run_queries.py
+```
+
+The database is generated locally and is excluded from Git because of its size. The import script can recreate it when the cleaned datasets are available.
+
+## Project Structure
 
 ```text
 Olist-Ecommerce-Data-AI-Project/
-│
 ├── reports/
 │   ├── task01_before_after_report.csv
-│   │
 │   ├── task02/
 │   │   ├── findings/
-│   │   │   └── task02_important_findings.txt
 │   │   ├── statistics/
-│   │   │   ├── business_statistics.csv
-│   │   │   ├── delivery_time_statistics.csv
-│   │   │   ├── monthly_order_trend.csv
-│   │   │   ├── monthly_sales_trend.csv
-│   │   │   ├── order_items_basic_statistics.csv
-│   │   │   ├── payment_method_analysis.csv
-│   │   │   ├── payments_basic_statistics.csv
-│   │   │   ├── products_basic_statistics.csv
-│   │   │   ├── relationship_correlations.csv
-│   │   │   ├── review_score_distribution.csv
-│   │   │   ├── reviews_basic_statistics.csv
-│   │   │   ├── sales_by_product_category.csv
-│   │   │   ├── top_10_highest_payment_values.csv
-│   │   │   ├── top_10_highest_price_items.csv
-│   │   │   └── top_10_lowest_price_items.csv
 │   │   └── visualizations/
-│   │       ├── 01_top_10_product_categories_by_sales.png
-│   │       ├── 02_payment_method_analysis.png
-│   │       ├── 03_monthly_order_trend.png
-│   │       ├── 04_monthly_sales_trend.png
-│   │       ├── 05_review_score_distribution.png
-│   │       ├── 06_price_vs_freight_relationship.png
-│   │       └── 07_delivery_time_distribution.png
-│   │
-│   └── task03/
-│       └── visualizations/
-│           ├── 01_top_categories_bar.png
-│           ├── 02_monthly_orders_line.png
-│           ├── 03_payment_methods_pie.png
-│           ├── 04_delivery_time_histogram.png
-│           ├── 05_price_vs_freight_scatter.png
-│           ├── 06_review_scores_bar.png
-│           └── 07_payment_value_bar.png
-│
+│   ├── task03/
+│   │   └── visualizations/
+│   └── task04/
+│       ├── database_tables.md
+│       └── query_results.txt
 ├── src/
 │   ├── clean_dataset.py
 │   ├── task01_quality_check.py
@@ -355,76 +205,46 @@ Olist-Ecommerce-Data-AI-Project/
 │   ├── task01_problem_records.py
 │   ├── task01_report.py
 │   ├── task02_analysis.py
-│   └── task03_visualizations.py
-│
+│   ├── task03_visualizations.py
+│   └── task04/
+│       ├── import_database.py
+│       ├── queries.sql
+│       ├── run_queries.py
+│       └── table_report.py
 ├── .gitignore
 └── README.md
 ```
 
-*Note: The structure lists the main project files and generated reports. Other local files may also exist.*
+*Note: This is the main project structure. Additional files may exist locally. The original and cleaned datasets are not included in the repository.*
 
----
-
-# Tools & Technologies
+## Tools & Technologies
 
 - Python
 - Pandas
 - NumPy
 - Matplotlib
+- SQLite
+- SQL
 - CSV
 - Git
 - GitHub
-- Data Cleaning
-- Data Quality Checking
-- Exploratory Data Analysis
-- Statistical Analysis
-- Data Visualization
 
----
+## Project Deliverables
 
-# Project Deliverables
+- Data cleaning and quality-checking scripts
+- Cleaned datasets and data-quality reports
+- Exploratory data analysis
+- Statistical summaries and business insights
+- Seven data visualizations for Task 03
+- SQL queries and SQLite database creation scripts
+- Database documentation and query results
 
-## Task 01
+## Repository
 
-- Python data-cleaning scripts
-- Data-quality checking scripts
-- Data-type validation
-- Inconsistent-value checks
-- Before-and-after quality report
-- Project documentation
+[View the complete project on GitHub](https://github.com/Ameer779/Olist-Ecommerce-Data-AI-Project)
 
-## Task 02
-
-- Exploratory data analysis script
-- Statistical analysis reports
-- Business statistics
-- Sales analysis
-- Payment analysis
-- Monthly trends
-- Review analysis
-- Delivery analysis
-- Correlation analysis
-- Business findings
-- Data visualizations
-
-## Task 03
-
-- Python visualization script
-- Seven generated visualizations
-- Bar charts
-- Line chart
-- Pie chart
-- Histogram
-- Scatter plot
-- PNG chart outputs
-- Project documentation
-
-The complete raw and cleaned datasets are maintained separately because of their file size.
-
----
-
-# Author
+## Author
 
 **Ameer Hamza**
 
-Data & AI Internship — Task 01, Task 02 & Task 03
+Data & AI Internship — Tasks 01, 02, 03, and 04
