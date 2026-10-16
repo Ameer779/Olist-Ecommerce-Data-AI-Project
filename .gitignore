@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+cleaned_data/
+database/
+Olist Brazilian E-Commerce Public/
+*.db
+*.sqlite
+*.sqlite3
