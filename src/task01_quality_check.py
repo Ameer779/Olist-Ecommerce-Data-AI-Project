@@ -1,51 +1,44 @@
 import pandas as pd
 from pathlib import Path
 
-RAW_DIR = Path("Olist Brazilian E-Commerce Public")
-CLEAN_DIR = Path("cleaned_data")
-REPORT_DIR = Path("reports")
+DATA_DIR = Path("Olist Brazilian E-Commerce Public")
 
-REPORT_DIR.mkdir(exist_ok=True)
+csv_files = list(DATA_DIR.glob("*.csv"))
 
-results = []
+print("=" * 70)
+print("OLIST DATASET - INITIAL QUALITY CHECK")
+print("=" * 70)
 
-for raw_file in RAW_DIR.glob("*.csv"):
+print(f"\nTotal CSV files found: {len(csv_files)}")
 
-    clean_name = raw_file.stem + "_cleaned.csv"
+for file in csv_files:
+    print(f"\n{'-' * 70}")
+    print(f"FILE: {file.name}")
 
-    if raw_file.name == "product_category_name_translation.csv":
-        clean_name = "product_category_translation_cleaned.csv"
+    df = pd.read_csv(file)
 
-    clean_file = CLEAN_DIR / clean_name
+    print(f"Rows: {df.shape[0]:,}")
+    print(f"Columns: {df.shape[1]}")
 
-    raw_df = pd.read_csv(raw_file)
-    clean_df = pd.read_csv(clean_file)
+    missing = df.isnull().sum().sum()
+    duplicates = df.duplicated().sum()
 
-    results.append({
-        "Dataset": raw_file.name,
-        "Before Rows": len(raw_df),
-        "After Rows": len(clean_df),
-        "Rows Removed": len(raw_df) - len(clean_df),
-        "Before Missing": raw_df.isnull().sum().sum(),
-        "After Missing": clean_df.isnull().sum().sum(),
-        "Before Duplicates": raw_df.duplicated().sum(),
-        "After Duplicates": clean_df.duplicated().sum()
-    })
+    print(f"Missing values: {missing:,}")
+    print(f"Duplicate rows: {duplicates:,}")
 
-report = pd.DataFrame(results)
+print("\n" + "=" * 70)
+print("QUALITY CHECK COMPLETED")
+print("=" * 70)
+print("\n" + "=" * 70)
+print("DETAILED MISSING VALUES BY COLUMN")
+print("=" * 70)
 
-report.to_csv(
-    REPORT_DIR / "task01_before_after_report.csv",
-    index=False
-)
+for file in csv_files:
+    df = pd.read_csv(file)
 
-print("=" * 80)
-print("TASK 01 - BEFORE VS AFTER QUALITY REPORT")
-print("=" * 80)
+    missing_by_column = df.isnull().sum()
+    missing_by_column = missing_by_column[missing_by_column > 0]
 
-print(report.to_string(index=False))
-
-print("\n" + "=" * 80)
-print("REPORT SAVED:")
-print("reports/task01_before_after_report.csv")
-print("=" * 80)
+    if len(missing_by_column) > 0:
+        print(f"\nFILE: {file.name}")
+        print(missing_by_column)
